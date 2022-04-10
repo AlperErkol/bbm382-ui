@@ -10,7 +10,7 @@ const Account = () => {
 		<div className='mb-8'>
 			<span className='text-default-white text-lg font-bold uppercase'>I already have an account.</span>
 			<Link className='text-default-white text-lg font-bold uppercase' to={'/account/signin'}>
-				<span className='text-default-secondary'>Sign In</span>.
+				<span className='text-tertiary'> Sign In.</span>
 			</Link>
 		</div>
 		<div className='w-1/3 h-1/2'>
