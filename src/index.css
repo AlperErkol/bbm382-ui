@@ -1,13 +1,340 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+:root{
+  --raleway : 'Raleway', sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--raleway);
+  font-size: 0.875rem;
+}
+input{
+  outline: none;
+}
+
+
+.hero-section{
+  height: 100vh;
+}
+
+header.scrolled{
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+}
+
+
+.section-title{
+position: relative;
+z-index: 10;
+text-decoration: underline wavy #DA0037;
+}
+
+.card{
+  transition: all 100ms ease;
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+}
+.card:hover{
+  -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.6);
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.6);
+
+}
+
+.circle{
+margin-right: 5px;
+transition: all 150ms ease;
+}
+
+.circle + span{
+visibility: hidden;
+}
+
+.circle.active{
+background-color: #DA0037;
+}
+
+.circle.active + span {
+visibility: visible;
+}
+
+.hero-badge{
+  animation: up-down 5s ease-in-out infinite alternate-reverse both;
+  -webkit-animation: up-down 5s ease-in-out infinite alternate-reverse both;;
+}
+
+
+.swiper-slide{
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
+}
+
+/* Custom Radio Button */
+
+.input-radio{
+  position: absolute;
+  z-index: -1;
+}
+
+.radio__radio{
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: white;
+  border-radius: 50%;
+  margin-right: 0.25rem;
+  padding: 0.25rem;
+}
+
+.radio__radio::before{
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-color: #121212;
+  border-radius: 50%;
+  transition: all 150ms ease;
+  display: block;
+  transform: scale(0);
+}
+
+.input-radio:checked + .radio__radio::before{
+  transform: scale(1);
+}
+
+
+.spinner{
+animation:spin 1s ease-in-out infinite;
+}
+
+.ant-modal-mask{
+background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+.login{
+height: calc(100vh - 3rem);
+}
+
+.create-url{
+height: calc(100vh - 3rem);
+}
+
+.profile{
+height: calc(100vh - 3rem);
+display: grid;
+grid-template-areas: "profile-sidebar profile-container";
+grid-template-columns: 1fr 5fr;
+}
+
+
+.not-found{
+height: calc(100vh - 3rem);
+}
+
+/* Form */
+
+.ant-form-item-label{
+padding: 0 !important;
+}
+
+label{
+font-size: 12px !important;
+font-weight: 500;
+}
+
+.ant-input-lg{
+font-size: 13px !important;
+  font-weight: 600;
+  margin-left: 0.25rem !important;
+}
+
+.ant-form-item{
+margin-bottom: 12px !important;
+}
+
+.ant-btn > span{
+font-size: 12px !important;
+font-weight: 500;
+text-transform: uppercase;
+}
+
+.ant-btn{
+width: 100% !important;
+background-color: #FFF !important;
+border-color: none;
+border: 1px solid black !important;
+color: #121212 !important;
+font-weight: 600 !important;
+transition: all 150ms ease !important;
+}
+
+.ant-btn:hover{
+background-color: #171717 !important;
+border: 1px solid #FFF !important;
+color: #FFF !important;
+}
+
+.ant-form-item-explain-error{
+font-size: 11px !important;
+}
+
+/* Overriding */
+.ant-btn-default{
+display: none !important;
+}
+
+.ant-modal-footer .ant-btn{
+margin: 0 !important;
+}
+
+.account-title{
+font-size: 2.75rem;
+font-weight: 500;
+position: relative;
+}
+
+.account-title::before{
+content: 'Join us to keep track url data and so on.';
+color: #DA0037;
+display: block;
+position: absolute;
+top: 0px;
+right: -5px;
+font-size: 2.75rem;
+
+}
+
+.ant-tabs-tab{
+
+color: #444444 !important;
+
+}
+
+.ant-tabs-nav{
+width: 15rem !important;
+border-right-color: #444444 !important;
+}
+
+.form-row-element{
+margin-right: .5rem !important;
+}
+
+
+/* Profile */
+
+.profile--sidebar--list > li{
+width: 100%;
+
+color: white;
+height: 3rem;
+text-align: center;
+cursor: pointer;
+line-height: 3rem;
+text-transform: uppercase;
+font-weight: 300;
+font-size: 12px;
+}
+
+.profile--sidebar--list > li:not(:last-child){
+margin-bottom: 1.25rem;
+}
+
+.profile--sidebar--picture--placeholder{
+position: relative;
+width: 100%;
+height: 100%;
+border-radius: 100%;
+background-color: rgba(0,0,0,0.8);
+transform: scale(0);
+transition: transform 100ms ease-in-out;
+cursor: pointer;
+}
+
+.profile--sidebar--picture--placeholder > .edit-icon{
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
+
+
+
+.profile--sidebar--picture:hover > .profile--sidebar--picture--placeholder{
+
+transform: scale(1);
+
+}
+
+
+
+
+
+
+/* Sidebar */
+
+.sidebar{
+position: absolute;
+left: -20rem;
+top: 0;
+display: block;
+width: 20rem;
+height: 100vh;
+background-color: #121212;
+z-index: 100;
+transition: all 150ms ease-in-out;
+}
+
+.sidebar.active{
+transform: translateX(20rem);
+}
+
+
+
+.overlay{
+position: fixed;
+top: 0;
+width: 0vw;
+height: 100vh;
+background-color: rgba(0, 0, 0, 0.85);
+z-index: 90;
+}
+
+.overlay.active{
+
+width: 100vw;
+
+}
+
+
+
+
+
+/* Animations */
+@keyframes up-down {
+
+  0%, 100%{
+
+      transform: translateY(0);
+
+  }
+
+  50% {
+
+      transform: translateY(10px);
+
+  }
+
+}
+@keyframes spin {
+0%{
+  transform: rotate(0deg);
+}
+100%{
+  transform: rotate(360deg);
+}
 }
