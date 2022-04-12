@@ -4,7 +4,11 @@ module.exports = {
   ],
   theme: {
     colors:{
-      'tertiary' : '#8041E7'
+      'primary' : '#F3F2EF',
+      'primary-light' : '#FFFFFF',
+      'secondary' : '#000000',
+      'tertiary' : '#8041E7',
+
     },
     extend: {},
   },

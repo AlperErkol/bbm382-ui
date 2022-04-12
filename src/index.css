@@ -19,6 +19,17 @@ input{
   outline: none;
 }
 
+textarea{
+  resize: none !important;
+  border: 1px solid #d8d7d4;
+  overflow: auto;
+  outline: none;
+  padding: 0.25rem;
+}
+
+a:hover{
+  color: #8041E7 !important;
+}
 
 .hero-section{
   height: 100vh;
@@ -27,41 +38,6 @@ input{
 header.scrolled{
   -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
   box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
-}
-
-
-.section-title{
-position: relative;
-z-index: 10;
-text-decoration: underline wavy #DA0037;
-}
-
-.card{
-  transition: all 100ms ease;
-  -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
-  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.3);
-}
-.card:hover{
-  -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.6);
-  box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.6);
-
-}
-
-.circle{
-margin-right: 5px;
-transition: all 150ms ease;
-}
-
-.circle + span{
-visibility: hidden;
-}
-
-.circle.active{
-background-color: #DA0037;
-}
-
-.circle.active + span {
-visibility: visible;
 }
 
 .hero-badge{
@@ -118,18 +94,6 @@ background-color: rgba(0, 0, 0, 0.75) !important;
 .login{
 height: calc(100vh - 3rem);
 }
-
-.create-url{
-height: calc(100vh - 3rem);
-}
-
-.profile{
-height: calc(100vh - 3rem);
-display: grid;
-grid-template-areas: "profile-sidebar profile-container";
-grid-template-columns: 1fr 5fr;
-}
-
 
 .not-found{
 height: calc(100vh - 3rem);
@@ -309,31 +273,186 @@ width: 100vw;
 
 }
 
+.header--logo{
+  width: 55px;
+  height: 60px;
+}
+
+footer{
+  width: 100%;
+  height: 3rem;
+  
+}
+
+.text--section{
+  height: 60vh;
+}
+
+.slider--section{
+  margin-top: 2rem;
+  width: 100%;
+  height: 100%;
+}
+
+.testimonials{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+/* @Swiper */
+
+.swiper {
+  width: 100%;
+  height: 300px;
+  padding: 0.6rem !important;
+  
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #FFFFFF;
+  position: relative;
+  z-index: 10;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 1px 12px !important;
+}
+
+.container{
+  max-width: 72rem/* 1152px */;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 100vh;
+}
 
 
+/* @Timeline */
 
+.timeline--grid{
+  display: grid;
+  grid-template-areas: "container sidebar";
+  grid-template-columns: 6fr 2fr;
+  
+  grid-gap: 10px;
+}
 
-/* Animations */
-@keyframes up-down {
+.timeline--header{
+  margin-bottom: 10px;
+}
 
-  0%, 100%{
+.timeline--flow{
+  grid-area: "container";
+}
+.timeline--sidebar{
+  grid-area: "sidebar";
+  border-radius: 15px;
+}
 
-      transform: translateY(0);
+.flow-item{
+  min-height: 150px;
+  border-radius: 15px;
+  background-color: #FFFFFF;
+  padding: 0.5rem 1rem;
+}
 
-  }
+.flow-item:not(:last-child){
+  margin-bottom: 0.5rem;
+}
 
-  50% {
+.profile-photo{
+  width: 3rem;
+  height: 3rem;
+  border-radius: 3rem;
+  background-color: #DA0037;
+}
 
-      transform: translateY(10px);
+.profile-photo-comment{
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+  background-color: #DA0037;
+}
 
-  }
+.flow-item-header{
+  border-bottom: 1px solid #F3F2EF;
+}
+
+.me--section-header{
+  border-bottom: 1px solid #F3F2EF;
+}
+
+.flow-item-body{
+  border-bottom: 1px solid #F3F2EF;
+}
+
+.comment-input{
+  flex: 1;
+  border: 1px solid #d8d7d4;
+  text-indent: 5px;
+  margin-right: 1rem;
+  border-radius: 10px;
+  font-size: .75rem;
+  font-weight: 600;
+  color: black;
+}
+.comment-button{
+  color: #d8d7d4;
+  transition: all 150ms;
+}
+.comment-button:hover{
+  color: black;
+}
+
+.post-type-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 0rem;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 150ms;
+}
+
+.post-type-item:nth-child(1):hover{
+  background-color: rgb(255, 199, 199);
+  color: rgb(255, 92, 92);
+}
+.post-type-item:nth-child(2):hover{
+  background-color: rgb(188, 183, 255);
+  color: rgb(96, 96, 255);
+}
+.post-type-item:nth-child(3):hover{
+  background-color: rgb(169, 255, 191);
+  color: rgb(62, 82, 61);
+}
+.post-type-item:nth-child(4):hover{
+  background-color: rgb(255, 236, 172);
+  color: rgb(255, 171, 61);
+}
+.post-type-item > span{
+
+  font-size: .8rem;
+  text-transform: uppercase;
+  font-weight: 700;
 
 }
-@keyframes spin {
-0%{
-  transform: rotate(0deg);
+.timeline--header-logo{
+  width: 3rem;
+  height: 3rem;
 }
-100%{
-  transform: rotate(360deg);
+
+.search-area{
+  height: 3rem;
 }
+
+.search-input{
+  border-radius: 5px;
+  
+  background-color: #F3F2EF;
+  font-size: .875rem;
+  text-indent: 10px;
+  font-weight: 600;
+  width: 20rem;
 }
