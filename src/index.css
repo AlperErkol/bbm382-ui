@@ -92,7 +92,10 @@ background-color: rgba(0, 0, 0, 0.75) !important;
 }
 
 .login{
-height: calc(100vh - 3rem);
+  height: calc(100vh - 3rem);
+}
+.login-form{
+  margin-top: 20vh;
 }
 
 .not-found{
@@ -285,7 +288,7 @@ footer{
 }
 
 .text--section{
-  height: 60vh;
+  height: 70vh;
 }
 
 .slider--section{
@@ -349,6 +352,12 @@ footer{
   grid-area: "sidebar";
   border-radius: 15px;
 }
+.timeline--sidebar-container{
+  position: sticky;
+  top: 10px;
+  padding: 1rem;
+  border-radius: 15px;
+}
 
 .flow-item{
   min-height: 150px;
@@ -381,6 +390,7 @@ footer{
 
 .me--section-header{
   border-bottom: 1px solid #F3F2EF;
+  display: flex;
 }
 
 .flow-item-body{
@@ -455,4 +465,42 @@ footer{
   text-indent: 10px;
   font-weight: 600;
   width: 20rem;
+}
+
+.btn{
+  width: 12rem;
+  height: 3rem;
+  border: 2px solid black;
+  color: black;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: .75rem;
+  border-radius: 15px;
+  transition: all 150ms;
+}
+
+.btn:hover{
+  background-color: black;
+  color: white;
+}
+
+.app-name{
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.app-type{
+  font-size: 2.15rem;
+  font-weight: 700;
+}
+
+.hero--girl{
+  width: 100%;
+  height: 70vh;
+}
+
+.testimonial-item{
+  border-radius: 15px;
+  padding: 2rem 1rem;
 }

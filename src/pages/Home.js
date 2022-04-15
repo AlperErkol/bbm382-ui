@@ -1,43 +1,35 @@
 import React from 'react'
 
-import Logo from '../assets/images/logo.png';
+
+
+import Slider from '../components/Slider';
+import Button from '../components/Button';
+
+import Hero from '../assets/images/hero.png';
+import Header from '../components/Header';
 
 import {Link} from 'react-router-dom';
-import Slider from '../components/Slider';
 
 const Home = () => {
   return (
     <>
       <section className="hero--section w-full h-full">
-        <header className="flex justify-between items-center h-16 bg-tertiary">
-          <img className="header--logo" src={Logo} alt="hacettepe-logo" />
-          <div>
-            <Link className="text-primary font-bold mr-4" to="/account/signup">
-              Sign Up
-            </Link>
-            <Link className="text-primary font-bold" to="/account/signin">
-              Sign In
-            </Link>
-          </div>
-        </header>
+        <Header/>
         <div className="container">
           <div className="text--section grid grid-cols-2 gap-2 mt-2">
-            <div className="left bg-primary" >
-              <span>LinkedHU_CENG</span>
-              <h1>Next Generation Social Media App.</h1>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias architecto, accusamus deleniti unde dolorum soluta eveniet, blanditiis reiciendis rerum nisi, qui optio cupiditate minus facilis sapiente quidem consequuntur? Voluptates, sunt.</p>
+            <div className="left flex items-center" >
+              <div className="flex flex-col">
+                <span className="app-name text-tertiary">LinkedHU_CENG</span>
+                <h1 className="app-type">Next Generation Social Media App</h1>
+                <p className="text-sm font-bold mb-6">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias architecto, accusamus deleniti unde dolorum soluta eveniet, blanditiis reiciendis rerum nisi, qui optio cupiditate minus facilis sapiente quidem consequuntur? Voluptates, sunt.</p>
+                <Link to="/account/signup">
+                  <Button text="Get Started"/>
+                </Link>
+              </div>
             </div>
-            <div className="right bg-tertiary">
+            <div className="right">
+              <img className="hero--girl" src={Hero} alt="home--hero" />
             </div>
-          </div>
-
-          <div className="why-us--section">
-            <div className="why-us--item"></div>
-            <div className="why-us--item"></div>
-            <div className="why-us--item"></div>
-            <div className="why-us--item"></div>
-            <div className="why-us--item"></div>
-            <div className="why-us--item"></div>
           </div>
 
           <div className="slider--section">

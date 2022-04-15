@@ -3,20 +3,18 @@ import { Modal, Form, Input } from 'antd';
 
 import PostService from '../../services/PostService';
 
-const TextModal = ({callback,isVisible,isHide}) => {
+const EditTextModal = ({callback, data,isVisible,isHide}) => {
 
 
     const isModalVisible = isVisible;
 
     const [form] = Form.useForm();
 
-
-
     const onFinish = (values) => {
-        values.postType = "TEXT";
-        PostService.createPost(values)
+        
+        data.postContent = values.postContent;
+        PostService.updatePost(data)
         .then(response => {
-            
             isHide();
             callback();
         })
@@ -29,14 +27,15 @@ const TextModal = ({callback,isVisible,isHide}) => {
     };
     
     const handleCancel = () => {
+        console.log('handle cancel');
         isHide();
     };
 
     return (
         <>
         <Modal 
-            title="&#127980; Create a Text Post"
-            okText="Post"
+            title="&#127980; Edit a Text Post"
+            okText="Save"
             visible={isModalVisible}
             onOk={() => {
             form
@@ -54,14 +53,14 @@ const TextModal = ({callback,isVisible,isHide}) => {
                 name="post"
                 onFinish={onFinish}
                 layout="vertical"
-            >
+            >   
                 <Form.Item
                     className="font-bold"
                     name="postContent"
                     label="Content"
                     rules={[{min:20, message: 'Content must be at least 20 characters.'},{ required: true, message: 'Please input content.' }]}
                 >
-                    <Input.TextArea rows="10" className="bg-tertiary" spellCheck={false} placeholder="What's happening?"  showCount maxLength={160} />
+                    <Input.TextArea rows="10" className="bg-tertiary" spellCheck={false} placeholder="What's happening?"  showCount maxLength={160} defaultValue={data.postContent}  />
                 </Form.Item>
             </Form>
         </Modal>
@@ -69,4 +68,4 @@ const TextModal = ({callback,isVisible,isHide}) => {
     )
 }
 
-export default TextModal
+export default EditTextModal

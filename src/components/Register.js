@@ -1,10 +1,12 @@
 import { Form, Input, Button,Checkbox} from 'antd';
 import { MailOutlined, KeyOutlined, SmileOutlined, IdcardOutlined} from '@ant-design/icons';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {useState} from 'react';
 
+import UserService from '../services/UserService';
 
+import Alert from './Alert';
 
 const Register = () => {
 
@@ -15,6 +17,30 @@ const Register = () => {
 
 	const onFinish = (values) => {
 		setLoading(true);
+		setErrorAlert(false);
+		UserService.register(values)
+		.then(response => {
+			if(response.data === ''){
+				setErrorAlert(true);
+			}else{
+				toast.success('🦄 Success, you are redirecting...!', {
+					position: "top-right",
+					autoClose: 5000,
+					hideProgressBar: false,
+					closeOnClick: true,
+					pauseOnHover: true,
+					draggable: true,
+					progress: undefined,
+				});
+				
+			}
+			setLoading(false);
+		})
+		.catch(error => {
+			console.log(error);
+			setLoading(false);
+		});
+		
 	};
 
 	  const onFinishFailed = (errorInfo) => {
@@ -25,7 +51,7 @@ const Register = () => {
    	return <div className='signup-tab'>
 		   {
 			errorAlert && <div>
-			
+			<Alert text="An error occured. Check your information!"/>
 		</div>
 		}
 
@@ -44,24 +70,24 @@ const Register = () => {
 				<Form.Item
 					className='flex-1 form-row-element'
 					label="Name"
-					name="name"
-					rules={[{ required: true, message: 'Please enter your name!' }]}
+					name="firstName"
+					rules={[{min:3, message: 'Name must be minimum 3 characters.'},{ required: true, message: 'Please enter your name!' }]}
 				>
 					<Input className='bg-default-primary' prefix={<SmileOutlined />} />
 				</Form.Item>
 				<Form.Item
 					className='flex-1'
 					label="Surname"
-					name="surname"
-					rules={[{ required: true, message: 'Please enter your surname!' }]}
+					name="lastName"
+					rules={[{min:2, message: 'Surname must be minimum 2 characters.'},{ required: true, message: 'Please enter your surname!' }]}
 				>
 					<Input prefix={<IdcardOutlined />} />
 				</Form.Item>
 			</div>
 			<Form.Item
 				label="E-Mail"
-				name="mail"
-				rules={[{ required: true, message: 'Please enter your mail!' }]}
+				name="email"
+				rules={[{type:'email', message: 'The input is not valid E-mail!'},{ required: true, message: 'Please enter your mail!' }]}
 			>
 				<Input prefix={<MailOutlined/>} />
 			</Form.Item>
@@ -71,7 +97,7 @@ const Register = () => {
 					className='flex-1 form-row-element'
 					label="Password"
 					name="password"
-					rules={[{ required: true, message: 'Please enter your password!' }]}
+					rules={[{min:8, message: 'Password must be at leats 8 characters.'},{ required: true, message: 'Please enter your password!' }]}
 				>
 					<Input.Password prefix={<KeyOutlined/>} />
 				</Form.Item>
@@ -79,8 +105,8 @@ const Register = () => {
 				<Form.Item
 					className='flex-1'
 					label="Confirm Password"
-					name="confirm-password"
-					rules={[{ required: true, message: 'Please enter your password!' }]}
+					name="confirmPassword"
+					rules={[{min:8, message: 'Password must be at leats 8 characters.'},{ required: true, message: 'Please enter your password!' }]}
 				>
 					<Input.Password prefix={<KeyOutlined/>} />
 				</Form.Item>

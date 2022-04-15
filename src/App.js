@@ -23,9 +23,9 @@ function App() {
             <Route path='/account/signup' element={<SignUp/>}/>
           </Routes>
         <Footer/>
+        
       </div>
-      
-    
+
   );
 }
 

@@ -8,6 +8,8 @@ module.exports = {
       'primary-light' : '#FFFFFF',
       'secondary' : '#000000',
       'tertiary' : '#8041E7',
+      'errorText' : '#842029',
+      'errorArea' : '#f8d7da',
 
     },
     extend: {},
