@@ -16,6 +16,7 @@ const Register = () => {
 
 
 	const onFinish = (values) => {
+		console.log(values);
 		setLoading(true);
 		setErrorAlert(false);
 		UserService.register(values)

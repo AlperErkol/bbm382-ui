@@ -75,10 +75,14 @@ const Timeline = () => {
             </div>
           </div>
           <div className="timeline--flow-container">
+
             {posts &&
               posts.map((elem) => (
                 <FlowItem key={elem.postId} callback={getAllData} postData={elem}/>
               ))}
+              {posts && posts.length == 0 ? <div className="no-post text-xl uppercase font-bold text-center mt-4">
+              &#129301; There is no post!
+              </div> : ""}
           </div>
         </div>
         <TimelineSidebar/>
