@@ -114,9 +114,15 @@ font-weight: 500;
 }
 
 .ant-input-lg{
-font-size: 13px !important;
-  font-weight: 600;
+  font-size: 13px !important;
+  font-weight: 600 !important;
   margin-left: 0.25rem !important;
+}
+
+.ant-select-lg, .ant-select-item-option-content, .ant-select-selection-item{
+    text-transform: uppercase;
+    font-size: 13px !important;
+    font-weight: 800 !important;
 }
 
 .ant-form-item{

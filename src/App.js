@@ -11,6 +11,7 @@ import {
   Route,
 } from "react-router-dom";
 import Timeline from './pages/Timeline';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       <div className="App relative w-full">
           <Routes>
             <Route path='/' element={<Home/>}/>
+            <Route path='/admin' element={<Admin/>}/>
             <Route path='/timeline' element={<Timeline/>}/>
             <Route path='/account/signin' element={<SignIn/>}/>
             <Route path='/account/signup' element={<SignUp/>}/>
