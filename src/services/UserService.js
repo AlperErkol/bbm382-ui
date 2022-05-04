@@ -12,6 +12,9 @@ const logIn = (data) => {
 
 // Register
 const register = (data) => {
+
+    data.userStatus=false;
+    console.log(data);
     return axios.post(`${baseURL}/user`,data);
 }
 
@@ -20,10 +23,27 @@ const findByUserId = (userId) => {
     return axios.post(`${baseURL}/user/${userId}`);
 }
 
+// Get All Users
+
+const getAllUsers = () => {
+    return axios.get(`${baseURL}/all`);
+};
+
+// Pending Request
+
+const getAllPendingRequests = () => {
+
+    return axios.get(`${baseURL}/status`);
+
+};
+
+
 const UserService = {
     logIn,
     register,
-    findByUserId
+    findByUserId,
+    getAllUsers,
+    getAllPendingRequests
 }
 
 export default UserService;
