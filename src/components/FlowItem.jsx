@@ -48,7 +48,7 @@ const FlowItem = ({callback, postData}) => {
           <div className="w-1 h-1 bg-secondary rounded-full mr-3"></div>
           <div className="comment-count flex items-center">
             <HiOutlineChatAlt />
-            <span className="text-xs font-semibold">{`${postData.commentList.length} comment(s)`}</span>
+            
           </div>
         </div>
       </div>

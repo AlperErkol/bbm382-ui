@@ -5,49 +5,61 @@ import Spinner from './Spinner';
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 
-const columns = [
-  {
-    title: 'Name',
-    dataIndex: 'firstName',
-    key: 'firstName',
-  },
-  {
-    title: 'Surname',
-    dataIndex: 'lastName',
-    key: 'lastName',
-  },
-  {
-    title: 'E-Mail',
-    dataIndex: 'email',
-    key: 'email',
-  },
-  {
-    title: 'Status',
-    key: 'userStatus',
-    dataIndex: 'userStatus',
-  },
-  {
-    title: 'User Type',
-    key: 'userType',
-    dataIndex : 'userType',
-
-  },
-  {
-    title: 'Action',
-    key: 'action',
-    render: (text, record) => (
-      <Space size="middle">
-        <RiDeleteBin6Line size={18}/>
-      </Space>
-    ),
-  },
-];
-
 
 const AllUsers = () => {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const deleteUser = (data) => {
+    let userId = data.userId;
+    UserService.declinePendingRequest(userId)
+    .then(response => {
+      if(response){
+        getAllUsers();
+      }
+    })
+    .catch(error => console.error(error));
+  };
+  
+
+  const columns = [
+    {
+      title: 'Name',
+      dataIndex: 'firstName',
+      key: 'firstName',
+    },
+    {
+      title: 'Surname',
+      dataIndex: 'lastName',
+      key: 'lastName',
+    },
+    {
+      title: 'E-Mail',
+      dataIndex: 'email',
+      key: 'email',
+    },
+    {
+      title: 'Status',
+      key: 'userStatus',
+      dataIndex: 'userStatus',
+    },
+    {
+      title: 'User Type',
+      key: 'userType',
+      dataIndex : 'userType',
+  
+    },
+    {
+      title: 'Action',
+      key: 'action',
+      render: (text, record) => (
+        <Space size="middle">
+          <RiDeleteBin6Line onClick={()=>deleteUser(record)}  size={18}/>
+        </Space>
+      ),
+    },
+  ];
 
 
   const getAllUsers = () => {

@@ -16,7 +16,6 @@ const PendingRequests = () => {
     setLoading(true);
     UserService.getAllPendingRequests()
     .then(response =>{
-      console.log(response.data);
       setData(response.data);
       setLoading(false);
     })
@@ -31,12 +30,25 @@ const PendingRequests = () => {
     getAllPendingRequests();
   }, [])
 
-  const redTeamPentesting = () =>{
-    console.log('accept');
+  const acceptRequest = (data) =>{
+    let userId = data.userId;
+    UserService.acceptPendingReques(userId)
+    .then(response => {
+      if(response){
+        getAllPendingRequests();
+      }
+    })
+    .catch(error => console.error(error));
+    
   };
   
-  const blueTeamPentesting = () =>{
-    console.log('decline');
+  const declineRequest = (data) =>{
+    let userId = data.userId;
+    UserService.declinePendingRequest(userId).then(response => {
+      if(response){
+        getAllPendingRequests();
+      }
+    }).catch(error => console.log(error));
   };
   
   
@@ -72,8 +84,8 @@ const PendingRequests = () => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <ImCheckmark onClick={redTeamPentesting} size={18}/>
-          <ImCross onClick={blueTeamPentesting}/>
+          <ImCheckmark onClick={()=>acceptRequest(record)} size={18}/>
+          <ImCross onClick={()=>declineRequest(record)}/>
         </Space>
       ),
     },

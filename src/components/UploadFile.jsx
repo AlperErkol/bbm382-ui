@@ -7,7 +7,6 @@ const { Dragger } = Upload;
 
 const props = {
   multiple: true,
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
   onChange(info) {
     const { status } = info.file;
     if (status !== 'uploading') {
@@ -28,7 +27,7 @@ const props = {
 const UploadFile = ({acceptVideos}) => {
   return (
     <Dragger
-        accept='.png, .jpeg, .jpg, .mp4'
+        accept='.png, .jpeg, .jpg'
         {...props}>
         <p className="ant-upload-drag-icon">
         <InboxOutlined />

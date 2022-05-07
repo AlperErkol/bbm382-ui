@@ -37,13 +37,29 @@ const getAllPendingRequests = () => {
 
 };
 
+// Accept Pending Request
+const acceptPendingReques = (userId) => {
+
+    return axios.post(`${baseURL}/request/accept/${userId}`);
+
+};
+
+// Decline Pending Request && Delete
+const declinePendingRequest = (userId) => {
+    return axios.post(`${baseURL}/request/decline/${userId}`);
+};
+
+
+
 
 const UserService = {
     logIn,
     register,
     findByUserId,
     getAllUsers,
-    getAllPendingRequests
+    getAllPendingRequests,
+    acceptPendingReques,
+    declinePendingRequest
 }
 
 export default UserService;
