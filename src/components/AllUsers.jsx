@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import UserService from '../services/UserService';
 import { Table, Space } from 'antd';
 import Spinner from './Spinner';
+import { RiDeleteBin6Line } from "react-icons/ri";
 
 
 const columns = [
@@ -36,7 +37,7 @@ const columns = [
     key: 'action',
     render: (text, record) => (
       <Space size="middle">
-        <a>Delete</a>
+        <RiDeleteBin6Line size={18}/>
       </Space>
     ),
   },
@@ -71,7 +72,7 @@ const AllUsers = () => {
   return (
     <>
       {loading && <Spinner/>}
-      {data && <Table columns={columns} dataSource={data} />}
+      {loading == false && data && <Table columns={columns} dataSource={data} />}
     </>
   )
 }

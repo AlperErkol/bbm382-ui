@@ -16,9 +16,14 @@ import GoToTop from "../components/GoToTop";
 import PostService from "../services/PostService";
 import FlowItem from "../components/FlowItem";
 import TimelineSidebar from "../components/TimelineSidebar";
+import PhotoModal from "../components/modals/PhotoModal";
+import EventModal from "../components/modals/EventModal";
 
 const Timeline = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const [isTextModalVisible, setIsTextModalVisible] = useState(false);
+  const [isPhotoModalVisible, setIsPhotoModalVisible] = useState(false);
+  const [isEventModalVisible, setIsEventModalVisible] = useState(false);
 
   const [posts, setPosts] = useState();
 
@@ -37,12 +42,30 @@ const Timeline = () => {
   }, []);
 
   const openTextModal = (_) => {
-    setIsModalVisible(true);
+    setIsTextModalVisible(true);
   };
 
   const hideTextModal = (_) => {
-    setIsModalVisible(false);
+    setIsTextModalVisible(false);
   };
+
+  const openPhotoModal = (_) => {
+    setIsPhotoModalVisible(true);
+  };
+
+  const hidePhotoModal = (_) => {
+    setIsPhotoModalVisible(false);
+  };
+
+  const openEventModal = (_) => {
+    setIsEventModalVisible(true);
+  };
+
+  const hideEventModal = (_) => {
+    setIsEventModalVisible(false);
+  };
+
+
 
   return (
     <section className="relative timeline bg-primary">
@@ -60,15 +83,15 @@ const Timeline = () => {
                 <HiOutlineAnnotation size={24} />
                 <span>Text</span>
               </div>
-              <div className="post-type-item">
+              <div onClick={openPhotoModal} className="post-type-item">
                 <HiPhotograph size={24} />
                 <span>Photo</span>
               </div>
-              <div className="post-type-item">
+              <div onClick={openPhotoModal} className="post-type-item">
                 <HiOutlineVideoCamera size={24} />
                 <span>Video</span>
               </div>
-              <div className="post-type-item">
+              <div onClick={openEventModal} className="post-type-item">
                 <HiOutlineCalendar size={24} />
                 <span>Event</span>
               </div>
@@ -88,7 +111,9 @@ const Timeline = () => {
         <TimelineSidebar/>
       </main>
       
-      <TextModal callback={getAllData} isVisible={isModalVisible} isHide={hideTextModal} />
+      <TextModal callback={getAllData} isVisible={isTextModalVisible} isHide={hideTextModal} />
+      <PhotoModal isVisible={isPhotoModalVisible} isHide={hidePhotoModal} />
+      <EventModal isVisible={isEventModalVisible} isHide={hideEventModal} />
     </section>
   );
 };

@@ -12,6 +12,8 @@ import {
 } from "react-router-dom";
 import Timeline from './pages/Timeline';
 import Admin from './pages/Admin';
+import Profile from './pages/Profile';
+import ChangePassword from './pages/ChangePassword';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
             <Route path='/timeline' element={<Timeline/>}/>
             <Route path='/account/signin' element={<SignIn/>}/>
             <Route path='/account/signup' element={<SignUp/>}/>
+            <Route path='/profile/overview' element={<Profile/>}/>
+            <Route path='/profile/change-password' element={<ChangePassword/>}/>
           </Routes>
         <Footer/>
         

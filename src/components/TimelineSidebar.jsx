@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 
 import UserService from '../services/UserService';
+import TimelineSidebarProfile from './TimelineSidebarProfile';
 
 const TimelineSidebar = () => {
 
@@ -24,13 +25,11 @@ const TimelineSidebar = () => {
         
     }, [])
     
-
-
-
+    
   return (
     <aside className="timeline--sidebar">
         <div className="timeline--sidebar-container bg-primary-light w-full h-72">
-            {loggedUser && loggedUser ? <p>{loggedUserId}</p> : <p className="text-center font-bold">There is no logged in user.</p>}
+            {loggedUser && loggedUser ? <TimelineSidebarProfile/> : <p className="text-center font-bold">You must log in to post.</p>}
         </div>
     </aside>
   )

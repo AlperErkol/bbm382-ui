@@ -207,6 +207,10 @@ width: 15rem !important;
 border-right-color: #444444 !important;
 }
 
+.ant-tabs{
+  height: 100%;
+}
+
 .form-row-element{
 margin-right: .5rem !important;
 }
@@ -559,4 +563,41 @@ footer{
 
 .admin--menu{
   height: calc(100vh - 3rem);
+}
+.profile--menu{
+  height: calc(100vh - 3rem);
+}
+
+.profile--page{
+  display: grid;
+  grid-template-areas: "profile-sidebar profile-content";
+  grid-template-columns: 2fr 7fr;
+  
+}
+
+#components-layout-demo-responsive .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.site-layout-sub-header-background {
+  background: #fff;
+}
+
+.site-layout-background {
+  background: #fff;
+}
+
+.ant-menu{
+  height: 100%;
+}
+
+.user-type{
+  background-color: #DA0037;
+  border-radius: 5px;
+  color: #121212;
+  text-transform: uppercase;
+  font-size: 0.70rem;
+  padding: 0.25rem;
 }
