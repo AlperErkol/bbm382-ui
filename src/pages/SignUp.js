@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Register from "../components/Register";
-import "antd/dist/antd.css";
 import Header from "../components/Header";
 
 const Account = () => {

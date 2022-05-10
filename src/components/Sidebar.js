@@ -1,20 +1,27 @@
-import React,{useState} from 'react'
+import React, { useState } from "react";
 
-const Sidebar = () => {
-
-    const [visible, setVisible] = useState(false);
+import {Link} from 'react-router-dom';
 
 
-    const openSidebar = _ => {
-        setVisible(!visible)
-    }
-    
-
-
+const Sidebar = ({visible}) => {
 
   return (
-    <aside className={visible ? 'main--sidebar active' : 'main--sidebar'}>Sidebar</aside>
-  ) 
-}
+    <aside className={visible ? "main--sidebar active" : "main--sidebar"}>
+      <div className="main--sidebar-wrapper w-full">
+        <ul className="w-full">
+          <li className="main--sidebar-item">
+            <Link to={"/"}>Home</Link>
+          </li>
+          <li className="main--sidebar-item">
+            <Link to={"/profile/overview"}>Profile</Link>
+          </li>
+          <li className="main--sidebar-item">
+            <Link to={"/"}>Log Out</Link>
+          </li>
+        </ul>
+      </div>
+    </aside>
+  );
+};
 
-export default Sidebar
+export default Sidebar;

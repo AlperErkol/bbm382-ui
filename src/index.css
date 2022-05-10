@@ -484,7 +484,7 @@ footer{
 
 .search-input{
   border-radius: 5px;
-  
+  z-index: 10;
   background-color: #F3F2EF;
   font-size: .875rem;
   text-indent: 10px;
@@ -538,11 +538,34 @@ footer{
   position:fixed;
   width: 20vw;
   height: 100vh;
-  background: red;
+  background: white;
   top: 0;
   left: -20vw;
   transition: all 150ms;
   z-index: 20;
+}
+
+.main--sidebar-item{
+  text-transform: uppercase;
+  width: 100%;
+  font-weight: 800;
+  font-size: .90rem;
+  text-align: center;
+  height: 3rem;
+  line-height: 3rem;
+  transition: all 200ms ease;
+}
+
+.main--sidebar-item:hover{
+  letter-spacing: 2px;
+}
+
+.main--sidebar-item>a{
+  color: #121212 !important;
+}
+
+.main--sidebar-item:not(:last-child){
+  margin-bottom: 1rem;
 }
 
 .overlay{
@@ -566,6 +589,11 @@ footer{
 }
 .profile--menu{
   height: calc(100vh - 3rem);
+}
+
+.new-profile--page{
+  width: 100%;
+  height: calc(100vh - 7rem);
 }
 
 .profile--page{
@@ -594,10 +622,48 @@ footer{
 }
 
 .user-type{
-  background-color: #DA0037;
+  background-color: #F3F2EF;
   border-radius: 5px;
   color: #121212;
   text-transform: uppercase;
   font-size: 0.70rem;
   padding: 0.25rem;
+}
+
+.d-inherit{
+  display: inherit;
+}
+
+.search--results{
+  z-index: 10;
+  background-color: white;
+  position: absolute;
+  bottom: -10rem;
+  min-height: 150px;
+  width: 0%;
+  border-radius: 5px;
+  transition: all 50ms ease-in-out;
+}
+
+.search--results.active{
+  width: 100%;
+}
+
+.search--overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 0vh; 
+  background-color: rgba(0, 0, 0, 0.85);
+  z-index: 5;
+  transition: all 50m  ease-in-out;
+}
+
+.search--overlay.active{
+  height: 100vh;
+}
+
+.edit-profile-form{
+  width: 600px !important;
 }

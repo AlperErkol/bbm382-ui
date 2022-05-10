@@ -7,6 +7,7 @@ const { Dragger } = Upload;
 
 const props = {
   multiple: true,
+  action: "http://localhost:8080/api/v1/frames/frame",
   onChange(info) {
     const { status } = info.file;
     if (status !== 'uploading') {

@@ -14,6 +14,8 @@ import Timeline from './pages/Timeline';
 import Admin from './pages/Admin';
 import Profile from './pages/Profile';
 import ChangePassword from './pages/ChangePassword';
+import Search from './pages/Search';
+import NewProfile from './pages/NewProfile';
 
 function App() {
   return (
@@ -23,8 +25,10 @@ function App() {
             <Route path='/' element={<Home/>}/>
             <Route path='/admin' element={<Admin/>}/>
             <Route path='/timeline' element={<Timeline/>}/>
+            <Route path='/search/:query' element={<Search/>}/>
             <Route path='/account/signin' element={<SignIn/>}/>
             <Route path='/account/signup' element={<SignUp/>}/>
+            <Route path='/profile' element={<NewProfile/>}/>
             <Route path='/profile/overview' element={<Profile/>}/>
             <Route path='/profile/change-password' element={<ChangePassword/>}/>
           </Routes>
