@@ -8,6 +8,9 @@ import {
   HiOutlineCursorClick,
 } from "react-icons/hi";
 
+import { AiOutlineLike } from "react-icons/ai";
+
+
 import { FiSettings } from "react-icons/fi";
 import {Dropdown} from 'antd';
 
@@ -41,22 +44,19 @@ const FlowItem = ({callback, postData}) => {
       <div className="flow-item-body">
         <p className="text-sm font-bold">{postData.postContent}</p>
         <div className="numbers flex items-center mb-1">
-          <div className="like-count flex items-center mr-3">
-            <HiOutlineCursorClick />
-            <span className="text-xs font-semibold">{`${postData.likes} like(s)`}</span>
+          <div className="like-count flex items-center mr-3 cursor-pointer">
+            <AiOutlineLike className="mr-1" />
+            <span className="text-xs font-semibold">{postData.likes}</span>
           </div>
           <div className="w-1 h-1 bg-secondary rounded-full mr-3"></div>
-          <div className="comment-count flex items-center">
-            <HiOutlineChatAlt />
-            
-          </div>
+          <span className="text-xs font-bold cursor-pointer">Reply To</span>
         </div>
       </div>
       <div className="flow-item-footer my-4 flex">
         <div className="profile-photo-comment mr-2"></div>
         <input
           className="comment-input"
-          placeholder="Search something"
+          placeholder="Type something"
           type="text"
           spellCheck={false}
         />
