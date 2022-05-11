@@ -5,7 +5,7 @@ import { InboxOutlined } from '@ant-design/icons';
 
 const { Dragger } = Upload;
 
-const props = {
+const uplaodFileProps = {
   multiple: true,
   action: "http://localhost:8080/api/v1/frames/frame",
   onChange(info) {
@@ -29,7 +29,7 @@ const UploadFile = ({acceptVideos}) => {
   return (
     <Dragger
         accept='.png, .jpeg, .jpg'
-        {...props}>
+        {...uplaodFileProps}>
         <p className="ant-upload-drag-icon">
         <InboxOutlined />
         </p>

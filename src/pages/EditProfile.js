@@ -1,19 +1,34 @@
-import { Form, Input, Button, Checkbox, Select } from "antd";
-import {
-  MailOutlined,
-  KeyOutlined,
-  SmileOutlined,
-  IdcardOutlined,
-} from "@ant-design/icons";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 
 import UserService from "../services/UserService";
-
 import Alert from "../components/Alert";
+import { changeProfilePhoto } from "../utils/UploadProps";
+
+import { Form, Input, Button, Select, Upload, message } from "antd";
+import { UploadOutlined } from "@ant-design/icons";
+import { MailOutlined, SmileOutlined, IdcardOutlined } from "@ant-design/icons";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const { Option } = Select;
+
+const changeProfilePhoto = {
+  name: 'file',
+  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+  headers: {
+    authorization: 'authorization-text',
+  },
+  onChange(info) {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      alert(`${info.file.name} file uploaded successfully`);
+    } else if (info.file.status === 'error') {
+      alert(`${info.file.name} file upload failed.`);
+    }
+  },
+};
 
 const EditProfile = () => {
   const [loading, setLoading] = useState(false);
@@ -58,10 +73,12 @@ const EditProfile = () => {
         </div>
       )}
 
-      <div className="flex flex-col items-center">
-	  	<div className="w-32 h-32 rounded-full mr-12 bg-tertiary"></div>
-		<button className="">Change Photo</button>
-	  </div>
+      <div className="flex flex-col items-center mr-12">
+        <div className="w-32 h-32 rounded-full  bg-tertiary"></div>
+        <Upload {...changeProfilePhoto}>
+          <Button icon={<UploadOutlined />}>Click to Upload</Button>
+        </Upload>
+      </div>
       <Form
         className="edit-profile-form"
         layout="vertical"
