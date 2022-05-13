@@ -10,6 +10,7 @@ module.exports = {
       'tertiary' : '#8041E7',
       'errorText' : '#842029',
       'errorArea' : '#f8d7da',
+      'muted' : '#858585',
 
     },
     extend: {},

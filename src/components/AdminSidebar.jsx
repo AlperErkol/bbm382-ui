@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Tabs } from 'antd';
 import AllUsers from './AllUsers';
+import AllPosts from './AllPosts';
 import PendingRequests from './PendingRequests';
 
 const AdminSidebar = () => {
@@ -21,7 +22,7 @@ const AdminSidebar = () => {
               <AllUsers/>
           </TabPane>
           <TabPane tab={"Posts & Events"} key={"2"} >
-              <AllUsers/>
+              <AllPosts/>
           </TabPane>
       </Tabs>
     </div>

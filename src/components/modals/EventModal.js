@@ -14,7 +14,7 @@ const EventModal = ({callback,isVisible,isHide}) => {
 
 
     const onFinish = (values) => {
-        values.postType = "TEXT";
+        values.postType = "event";
         PostService.createPost(values)
         .then(response => {
             

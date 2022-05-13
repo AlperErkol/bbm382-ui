@@ -1,4 +1,4 @@
-const getLoggedInUser = () => {
+const getLoggedInUserId = () => {
   if (localStorage.getItem("loggedUser")) {
     const userId = localStorage.getItem("loggedUser");
     return userId;
@@ -7,4 +7,4 @@ const getLoggedInUser = () => {
   }
 };
 
-export default getLoggedInUser;
+export default getLoggedInUserId;

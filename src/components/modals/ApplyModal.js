@@ -4,7 +4,7 @@ import { Modal, Form, Input } from 'antd';
 import PostService from '../../services/PostService';
 import UploadFile from '../UploadFile';
 
-const PhotoModal = ({callback,isVisible,isHide}) => {
+const ApplyModal = ({callback,isVisible,isHide}) => {
 
 
     const isModalVisible = isVisible;
@@ -14,18 +14,18 @@ const PhotoModal = ({callback,isVisible,isHide}) => {
 
 
     const onFinish = (values) => {
-        values.postType = "photo";
-        PostService.createPost(values)
-        .then(response => {
+        
+        // PostService.createPost(values)
+        // .then(response => {
             
-            isHide();
-            callback();
-        })
-        .catch(error => {
-            console.log(error);
-            isHide();
-            callback();
-        });
+        //     isHide();
+        //     callback();
+        // })
+        // .catch(error => {
+        //     console.log(error);
+        //     isHide();
+        //     callback();
+        // });
         
     };
     
@@ -36,8 +36,8 @@ const PhotoModal = ({callback,isVisible,isHide}) => {
     return (
         <>
         <Modal 
-            title="&#127980; Create a Visible Post"
-            okText="Post"
+            title="&#127980; Apply Form"
+            okText="Apply"
             visible={isModalVisible}
             onOk={() => {
             form
@@ -71,4 +71,4 @@ const PhotoModal = ({callback,isVisible,isHide}) => {
     )
 }
 
-export default PhotoModal;
+export default ApplyModal;

@@ -13,7 +13,7 @@ const TextModal = ({callback,isVisible,isHide}) => {
 
 
     const onFinish = (values) => {
-        values.postType = "TEXT";
+        values.postType = "text";
         PostService.createPost(values)
         .then(response => {
             

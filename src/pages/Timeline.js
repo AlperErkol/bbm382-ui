@@ -1,34 +1,41 @@
 import React, { useState, useEffect } from "react";
+
 import TimelineHeader from "../components/TimelineHeader";
+import GoToTop from "../components/GoToTop";
+import PostService from "../services/PostService";
+import FlowItem from "../components/FlowItem";
+import TimelineSidebar from "../components/TimelineSidebar";
+import TextModal from "../components/modals/TextModal";
+import PhotoModal from "../components/modals/PhotoModal";
+import EventModal from "../components/modals/EventModal";
+import AdvertisementModal from "../components/modals/AdvertisementModal";
+import AnnouncementModal from "../components/modals/AnnouncementModal";
 
 import {
   HiPhotograph,
   HiOutlineVideoCamera,
   HiOutlineCalendar,
   HiOutlineAnnotation,
+  HiUsers,
 } from "react-icons/hi";
 
-
-import TextModal from "../components/modals/TextModal";
-import GoToTop from "../components/GoToTop";
-import PostService from "../services/PostService";
-import FlowItem from "../components/FlowItem";
-import TimelineSidebar from "../components/TimelineSidebar";
-import PhotoModal from "../components/modals/PhotoModal";
-import EventModal from "../components/modals/EventModal";
+import { AiFillNotification } from "react-icons/ai";
 
 const Timeline = () => {
 
   const [isTextModalVisible, setIsTextModalVisible] = useState(false);
   const [isPhotoModalVisible, setIsPhotoModalVisible] = useState(false);
   const [isEventModalVisible, setIsEventModalVisible] = useState(false);
+  const [isAdvertismentModalVisible, setIsAdvertismentModalVisible] = useState(false);
+  const [isAnnouncementModalVisible, setIsAnnouncementModalVisible] = useState(false);
 
   const [posts, setPosts] = useState();
 
   const getAllData = () =>{
 
-    PostService.getAll()
+    PostService.getAllPosts()
     .then((response) => {
+      console.log(response.data);
       setPosts(response.data);
     })
     .catch((error) => console.log(error));
@@ -63,7 +70,21 @@ const Timeline = () => {
     setIsEventModalVisible(false);
   };
 
+  const openAdvertisementModal = (_) => {
+    setIsAdvertismentModalVisible(true);
+  };
 
+  const hideAdvertisementModal = (_) => {
+    setIsAdvertismentModalVisible(false);
+  };
+
+  const openAnnouncementModal = (_) => {
+    setIsAnnouncementModalVisible(true);
+  };
+
+  const hideAnnouncementModal = (_) => {
+    setIsAnnouncementModalVisible(false);
+  };
 
   return (
     <section className="relative timeline bg-primary">
@@ -93,6 +114,14 @@ const Timeline = () => {
                 <HiOutlineCalendar size={24} />
                 <span>Event</span>
               </div>
+              <div onClick={openAdvertisementModal} className="post-type-item">
+                <HiUsers size={24} />
+                <span>Internship & Scholarship & Job Advertisement</span>
+              </div>
+              <div onClick={openAnnouncementModal} className="post-type-item">
+                <AiFillNotification size={24} />
+                <span>Announcement & News</span>
+              </div>
             </div>
           </div>
           <div className="timeline--flow-container">
@@ -110,8 +139,10 @@ const Timeline = () => {
       </main>
       
       <TextModal callback={getAllData} isVisible={isTextModalVisible} isHide={hideTextModal} />
-      <PhotoModal isVisible={isPhotoModalVisible} isHide={hidePhotoModal} />
-      <EventModal isVisible={isEventModalVisible} isHide={hideEventModal} />
+      <PhotoModal callback={getAllData} isVisible={isPhotoModalVisible} isHide={hidePhotoModal} />
+      <EventModal callback={getAllData} isVisible={isEventModalVisible} isHide={hideEventModal} />
+      <AdvertisementModal callback={getAllData} isVisible={isAdvertismentModalVisible} isHide={hideAdvertisementModal} />
+      <AnnouncementModal callback={getAllData} isVisible={isAnnouncementModalVisible} isHide={hideAnnouncementModal} />
     </section>
   );
 };

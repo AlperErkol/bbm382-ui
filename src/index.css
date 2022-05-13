@@ -466,6 +466,14 @@ footer{
   background-color: rgb(255, 236, 172);
   color: rgb(255, 171, 61);
 }
+.post-type-item:nth-child(5):hover{
+  background-color: rgb(209, 209, 209);
+  color: rgb(12, 12, 11);
+}
+.post-type-item:nth-child(6):hover{
+  background-color: rgb(172, 255, 244);
+  color: rgb(0, 92, 116);
+}
 .post-type-item > span{
 
   font-size: .8rem;
@@ -584,6 +592,21 @@ footer{
   left: 0;
 }
 
+.notification--box{
+  position:fixed;
+  width: 20vw;
+  height: 100vh;
+  background: white;
+  top: 0;
+  right: -20vw;
+  transition: all 150ms;
+  z-index: 20;
+}
+
+.notification--box.active{
+  right: 0;
+}
+
 .admin--menu{
   height: calc(100vh - 3rem);
 }
@@ -666,4 +689,70 @@ footer{
 
 .edit-profile-form{
   width: 600px !important;
+}
+
+.notification--box-header{
+  padding: 1rem 0rem;
+  border-bottom: 1px solid #F3F2EF;
+}
+
+.notification--box-item{
+  position: relative;
+  height: 175px;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #F3F2EF;
+}
+
+.grey-border{
+  border-bottom: 1px solid #F3F2EF;
+}
+
+.comment-btn{
+  width: 10rem !important;
+}
+
+.apply-button{
+  border: 1px solid black;
+  font-size: .70rem;
+  font-weight: 700;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  text-transform: uppercase;
+  padding: 0.2rem;
+}
+
+.ant-ribbon.ant-ribbon-placement-end{
+  top: 5rem !important;
+}
+
+.flow-item-footer{
+  display: none;
+}
+
+.flow-item-footer.active{
+  display: flex;
+}
+
+.ant-ribbon-text{
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.comments-item{
+  
+  margin-left: 2rem;
+}
+
+.comments-item:not(:last-child){
+  margin-bottom: 1rem;
+}
+
+.comment-content{
+  font-size: .75rem;
+  
+}
+
+.ant-collapse-borderless{
+  background: none !important;
 }

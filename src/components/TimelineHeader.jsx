@@ -9,17 +9,26 @@ import Sidebar from "./Sidebar";
 
 import { Link } from "react-router-dom";
 import Search from "../pages/Search";
+import NotificationBox from "./NotificationBox";
 
 const TimelineHeader = () => {
-  const [visible, setVisible] = useState(false);
+
+  const [visibleSidebar, setVisibleSidebar] = useState(false);
+  const [visibleNotificationBox, setVisibleNotificationBox] = useState(false);
 
   const openSidebar = (_) => {
-    setVisible(true);
+    setVisibleSidebar(true);
   };
 
-  const closeSidebar = (_) => {
-    setVisible(false);
+  const closeOverlay = (_) => {
+    setVisibleSidebar(false);
+    setVisibleNotificationBox(false);
   };
+
+  const openNotificationBox = (_) => {
+    setVisibleNotificationBox(true);
+  };
+
 
   return (
     <header className="timeline--header h-16 w-full bg-primary-light">
@@ -35,15 +44,16 @@ const TimelineHeader = () => {
           <Search />
         </div>
         <div className="nav--links flex">
-          <MdOutlineNotificationsNone className="mr-2" size={24} />
+          <MdOutlineNotificationsNone onClick={openNotificationBox} className="mr-2" size={24} />
           <HiMenuAlt3 onClick={openSidebar} size={24} />
         </div>
       </nav>
       <div
-        onClick={closeSidebar}
-        className={visible ? "overlay active" : "overlay"}
+        onClick={closeOverlay}
+        className={(visibleSidebar || visibleNotificationBox) ? "overlay active" : "overlay"}
       ></div>
-      <Sidebar visible={visible} />
+      <Sidebar visible={visibleSidebar} />
+      <NotificationBox visible={visibleNotificationBox} />
     </header>
   );
 };

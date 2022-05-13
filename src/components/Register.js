@@ -27,7 +27,7 @@ const Register = () => {
 			if(response.data === ''){
 				setErrorAlert(true);
 			}else{
-				toast.success('🦄 Success, you are redirecting...!', {
+				toast.success('🦄 Registration is succeed!, you must wait for admin approval..!', {
 					position: "top-right",
 					autoClose: 5000,
 					hideProgressBar: false,

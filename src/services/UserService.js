@@ -29,6 +29,13 @@ const getAllUsers = () => {
     return axios.get(`${baseURL}/all`);
 };
 
+// Get All Active Users
+
+const getAllActiveUsers = () => {
+    return axios.get(`${baseURL}/active`);
+};
+
+
 // Pending Request
 
 const getAllPendingRequests = () => {
@@ -57,6 +64,7 @@ const UserService = {
     register,
     findByUserId,
     getAllUsers,
+    getAllActiveUsers,
     getAllPendingRequests,
     acceptPendingReques,
     declinePendingRequest

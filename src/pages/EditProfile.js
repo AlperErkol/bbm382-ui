@@ -2,7 +2,6 @@ import { useState } from "react";
 
 import UserService from "../services/UserService";
 import Alert from "../components/Alert";
-import { changeProfilePhoto } from "../utils/UploadProps";
 
 import { Form, Input, Button, Select, Upload, message } from "antd";
 import { UploadOutlined } from "@ant-design/icons";

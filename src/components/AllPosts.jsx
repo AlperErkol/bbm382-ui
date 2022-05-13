@@ -1,22 +1,21 @@
 import React, {useState, useEffect} from 'react'
-import UserService from '../services/UserService';
 import { Table, Space } from 'antd';
 import Spinner from './Spinner';
 import { RiDeleteBin6Line } from "react-icons/ri";
+import PostService from '../services/PostService';
 
 
 
-const AllUsers = () => {
+const AllPosts = () => {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const deleteUser = (data) => {
-    let userId = data.userId;
-    UserService.declinePendingRequest(userId)
+  const deletePost = (data) => {      
+    PostService.deletePost(data.postId)
     .then(response => {
       if(response){
-        getAllUsers();
+        getAllPosts();
       }
     })
     .catch(error => console.error(error));
@@ -25,29 +24,30 @@ const AllUsers = () => {
 
   const columns = [
     {
-      title: 'Name',
-      dataIndex: 'firstName',
-      key: 'firstName',
+      title: 'Post Id',
+      dataIndex: 'postId',
+      key: 'postId',
+      render: text => <a href={`http://localhost:3000/post/${text}`}>{text}</a>,
     },
     {
-      title: 'Surname',
-      dataIndex: 'lastName',
-      key: 'lastName',
+      title: 'Post Type',
+      dataIndex: 'postType',
+      key: 'postType',
     },
     {
-      title: 'E-Mail',
-      dataIndex: 'email',
-      key: 'email',
+      title: 'Post Owner Id',
+      dataIndex: 'owner',
+      key: 'owner',
+    },
+    {
+      title: 'Post Content',
+      key: 'postContent',
+      dataIndex: 'postContent',
     },
     {
       title: 'Creation Date',
       key: 'creationDate',
-      dataIndex: 'creationDate',
-    },
-    {
-      title: 'User Type',
-      key: 'userType',
-      dataIndex : 'userType',
+      dataIndex : 'creationDate',
   
     },
     {
@@ -55,16 +55,16 @@ const AllUsers = () => {
       key: 'action',
       render: (text, record) => (
         <Space size="middle">
-          <RiDeleteBin6Line onClick={()=>deleteUser(record)}  size={18}/>
+          <RiDeleteBin6Line onClick={()=>deletePost(record)}  size={18}/>
         </Space>
       ),
     },
   ];
 
 
-  const getAllUsers = () => {
+  const getAllPosts = () => {
     setLoading(true);
-    UserService.getAllActiveUsers()
+    PostService.getAllPosts()
     .then(response => {
       console.log(response.data);
       setData(response.data);
@@ -78,7 +78,7 @@ const AllUsers = () => {
   };
 
   useEffect(() => {
-    getAllUsers();
+    getAllPosts();
   }, [])
   
   return (
@@ -89,4 +89,4 @@ const AllUsers = () => {
   )
 }
 
-export default AllUsers;
+export default AllPosts;
