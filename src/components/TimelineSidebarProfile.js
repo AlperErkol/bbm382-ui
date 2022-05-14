@@ -1,12 +1,21 @@
 import React from "react";
-
+import imagePath from "../utils/ImagePath";
 import getElapsedTime from "../utils/Time";
 
 const TimelineSidebarProfile = ({ data }) => {
   return (
     <div className="timeline--sidebar-profile">
       <div className="flex me--section-header pb-2 mb-2">
-        <div className="profile-photo mr-2"></div>
+        <div className="profile-photo mr-2">
+          {data.userImage !== null ? (
+            <img
+              className="user-image rounded-full"
+              src={imagePath + "/" + data.userImage}
+            />
+          ) : (
+            <div></div>
+          )}
+        </div>
         <div className="flex flex-col">
           <div>
             <span className="mr-2 d-inherit">Hi, {data.firstName}.</span>

@@ -12,13 +12,13 @@ import {
 } from "react-router-dom";
 import Timeline from './pages/Timeline';
 import Admin from './pages/Admin';
-import Profile from './pages/Profile';
-import ChangePassword from './pages/ChangePassword';
 import Search from './pages/Search';
 import NewProfile from './pages/NewProfile';
 import PostDetail from './components/PostDetail';
 
+
 function App() {
+
   return (
     
       <div className="App relative w-full">
@@ -29,9 +29,7 @@ function App() {
             <Route path='/search/:query' element={<Search/>}/>
             <Route path='/account/signin' element={<SignIn/>}/>
             <Route path='/account/signup' element={<SignUp/>}/>
-            <Route path='/profile' element={<NewProfile/>}/>
-            <Route path='/profile/overview' element={<Profile/>}/>
-            <Route path='/profile/change-password' element={<ChangePassword/>}/>
+            <Route path='/profile/:userId' element={<NewProfile/>}/>
             <Route path='/post/:postId' element={<PostDetail/>} />
           </Routes>
         <Footer/>

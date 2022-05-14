@@ -7,17 +7,26 @@ import UploadFile from '../UploadFile';
 const PhotoModal = ({callback,isVisible,isHide}) => {
 
 
+    const [uploadedFile, setUploadedFile] = useState([]);
+
+    const addQueue = (newLink) => {
+        uploadedFile.push(newLink);
+        setUploadedFile(uploadedFile);
+        console.log(newLink);
+    }
+
+
     const isModalVisible = isVisible;
 
     const [form] = Form.useForm();
-
-
 
     const onFinish = (values) => {
         values.postType = "photo";
         PostService.createPost(values)
         .then(response => {
+            let postId = response.data.postId;
             
+            console.log(uploadedFile);
             isHide();
             callback();
         })
@@ -26,6 +35,7 @@ const PhotoModal = ({callback,isVisible,isHide}) => {
             isHide();
             callback();
         });
+
         
     };
     
@@ -50,6 +60,7 @@ const PhotoModal = ({callback,isVisible,isHide}) => {
                 });
             }}
             onCancel={handleCancel}>
+            
             <Form
                 form={form}
                 name="post"
@@ -65,7 +76,7 @@ const PhotoModal = ({callback,isVisible,isHide}) => {
                     <Input.TextArea className="bg-tertiary mb-4" spellCheck={false} placeholder="What's happening?"  showCount maxLength={160} />
                 </Form.Item>
             </Form>
-            <UploadFile/>
+            <UploadFile uploadedLinks={addQueue} />
         </Modal>
         </>
     )

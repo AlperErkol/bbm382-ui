@@ -11,6 +11,8 @@ import EventModal from "../components/modals/EventModal";
 import AdvertisementModal from "../components/modals/AdvertisementModal";
 import AnnouncementModal from "../components/modals/AnnouncementModal";
 
+import imagePath from "../utils/ImagePath";
+
 import {
   HiPhotograph,
   HiOutlineVideoCamera,
@@ -20,30 +22,43 @@ import {
 } from "react-icons/hi";
 
 import { AiFillNotification } from "react-icons/ai";
+import UserService from "../services/UserService";
+import getLoggedInUserId from "../utils/Authentication";
 
 const Timeline = () => {
-
   const [isTextModalVisible, setIsTextModalVisible] = useState(false);
   const [isPhotoModalVisible, setIsPhotoModalVisible] = useState(false);
   const [isEventModalVisible, setIsEventModalVisible] = useState(false);
-  const [isAdvertismentModalVisible, setIsAdvertismentModalVisible] = useState(false);
-  const [isAnnouncementModalVisible, setIsAnnouncementModalVisible] = useState(false);
+  const [isAdvertismentModalVisible, setIsAdvertismentModalVisible] =
+    useState(false);
+  const [isAnnouncementModalVisible, setIsAnnouncementModalVisible] =
+    useState(false);
 
   const [posts, setPosts] = useState();
+  const [user, setUser] = useState();
 
-  const getAllData = () =>{
-
+  const getAllData = () => {
     PostService.getAllPosts()
-    .then((response) => {
-      console.log(response.data);
-      setPosts(response.data);
-    })
-    .catch((error) => console.log(error));
+      .then((response) => {
+        console.log(response.data);
+        setPosts(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
 
+  const getLoggedIn = () => {
+    UserService.findByUserId(getLoggedInUserId())
+      .then((response) => {
+        
+        setUser(response.data);
+      })
+      .catch((error) => console.log(error));
   };
 
   useEffect(() => {
     getAllData();
+    getLoggedIn();
+    console.log("123123");
   }, []);
 
   const openTextModal = (_) => {
@@ -94,7 +109,6 @@ const Timeline = () => {
         <div className="timeline--flow">
           <div className="me--section flow-item">
             <div className="me--section-header flex items-center pb-4 mb-4">
-              <div className="profile-photo mr-2"></div>
               <span className="text-lg font-bold">Create a Post</span>
             </div>
             <div className="post-type grid grid-cols-2 gap-2">
@@ -125,24 +139,51 @@ const Timeline = () => {
             </div>
           </div>
           <div className="timeline--flow-container">
-
             {posts &&
               posts.map((elem) => (
-                <FlowItem key={elem.postId} callback={getAllData} postData={elem}/>
+                <FlowItem
+                  key={elem.postId}
+                  callback={getAllData}
+                  postData={elem}
+                />
               ))}
-              {posts && posts.length == 0 ? <div className="no-post text-xl uppercase font-bold text-center mt-4">
-              &#129301; There is no post!
-              </div> : ""}
+            {posts && posts.length == 0 ? (
+              <div className="no-post text-xl uppercase font-bold text-center mt-4">
+                &#129301; There is no post!
+              </div>
+            ) : (
+              ""
+            )}
           </div>
         </div>
-        <TimelineSidebar/>
+        <TimelineSidebar />
       </main>
-      
-      <TextModal callback={getAllData} isVisible={isTextModalVisible} isHide={hideTextModal} />
-      <PhotoModal callback={getAllData} isVisible={isPhotoModalVisible} isHide={hidePhotoModal} />
-      <EventModal callback={getAllData} isVisible={isEventModalVisible} isHide={hideEventModal} />
-      <AdvertisementModal callback={getAllData} isVisible={isAdvertismentModalVisible} isHide={hideAdvertisementModal} />
-      <AnnouncementModal callback={getAllData} isVisible={isAnnouncementModalVisible} isHide={hideAnnouncementModal} />
+
+      <TextModal
+        callback={getAllData}
+        isVisible={isTextModalVisible}
+        isHide={hideTextModal}
+      />
+      <PhotoModal
+        callback={getAllData}
+        isVisible={isPhotoModalVisible}
+        isHide={hidePhotoModal}
+      />
+      <EventModal
+        callback={getAllData}
+        isVisible={isEventModalVisible}
+        isHide={hideEventModal}
+      />
+      <AdvertisementModal
+        callback={getAllData}
+        isVisible={isAdvertismentModalVisible}
+        isHide={hideAdvertisementModal}
+      />
+      <AnnouncementModal
+        callback={getAllData}
+        isVisible={isAnnouncementModalVisible}
+        isHide={hideAnnouncementModal}
+      />
     </section>
   );
 };

@@ -10,7 +10,7 @@ import { CaretRightOutlined } from "@ant-design/icons";
 
 import { Dropdown, Space } from "antd";
 import { Form, Button, Input } from "antd";
-
+import imagePath from "../utils/ImagePath";
 import CommentService from "../services/CommentService";
 
 import Spinner from "./Spinner";
@@ -21,15 +21,15 @@ import ApplyModal from "../components/modals/ApplyModal";
 import trimAndFixPostType from "../utils/Ribbon";
 
 import UserService from "../services/UserService";
+import CommentStory from "./CommentStory";
 
 const { TextArea } = Input;
 const { Panel } = Collapse;
 
-const FlowItem = ({ callback, postData }) => {
+const FlowItem = ({ callback, postData, detail }) => {
   const [submitting, setSubmitting] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [comments, setComments] = useState();
-  const [userByComment, setUserByComment] = useState();
+  const [comments, setComments] = useState([]);
   const [isApplyModalVisible, setIsApplyModalVisible] = useState(false);
   const [owner, setOwner] = useState();
   const [commentArea, setCommentArea] = useState(false);
@@ -101,11 +101,24 @@ const FlowItem = ({ callback, postData }) => {
   };
 
   return (
-    <Badge.Ribbon text={trimAndFixPostType(postData.postType)} placement="end">
-      <div key={postData.postId} className="flow-item">
+    <Badge.Ribbon
+      className="selamar"
+      text={trimAndFixPostType(postData.postType)}
+      placement="end"
+    >
+      <div key={postData.postId} className="flow-item w-full">
         <div className="flow-item-header flex items-center justify-between pb-2 mb-4">
           <div className="flex">
-            <div className="profile-photo mr-2"></div>
+            <div className="profile-photo mr-2">
+              {owner && owner.userImage !== null ? (
+                <img
+                  className="user-image rounded-full"
+                  src={imagePath + "/" + owner.userImage}
+                />
+              ) : (
+                <div></div>
+              )}
+            </div>
             <div className="information flex flex-col justify-center h-12">
               <span className="text-xs font-bold">
                 {owner && owner.firstName + " " + owner.lastName}
@@ -132,7 +145,8 @@ const FlowItem = ({ callback, postData }) => {
                 </Space>
               </Dropdown>
             )}
-            {postData.canApply && (
+            
+            {postData.canApply && (getLoggedInUserId() != postData.owner) && ( 
               <button onClick={openApplyModal} className="apply-button">
                 apply now!
               </button>
@@ -167,32 +181,20 @@ const FlowItem = ({ callback, postData }) => {
           )}
           className="site-collapse-custom-collapse"
         >
-          <Panel
-            header="Show All Comments"
-            key="1"
-            className="site-collapse-custom-panel"
-          >
-            <ul className="comments mt-4">
-              {loading && <Spinner />}
-              {comments &&
-                comments.map((comment) => (
-                  <li className="comments-item flex">
-                    <div className="profile-photo-comment mr-2"></div>
-                    <div className="flex flex-col bg-primary w-full p-1">
-                      <div className="flex justify-between">
-                        <span className="font-bold">Alper Erkol</span>
-                        <span className="text-muted text-xs">
-                          {getElapsedTime(comment.creationDate)}
-                        </span>
-                      </div>
-                      <p className="font-semibold comment-content">
-                        {comment.commentContent}
-                      </p>
-                    </div>
-                  </li>
+          {comments.length > 0 && (
+            <Panel
+              header={`Show All Comments (${comments.length})`}
+              key="1"
+              className="site-collapse-custom-panel"
+            >
+              <ul className="comments mt-4">
+                {loading && <Spinner />}
+                {comments.map((comment) => (
+                  <CommentStory data={comment} />
                 ))}
-            </ul>
-          </Panel>
+              </ul>
+            </Panel>
+          )}
         </Collapse>
         <div
           className={

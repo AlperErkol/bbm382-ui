@@ -1,48 +1,50 @@
+import { Form, Input, Button, Select, Upload } from "antd";
 import { useState } from "react";
 
 import UserService from "../services/UserService";
 import Alert from "../components/Alert";
 
-import { Form, Input, Button, Select, Upload, message } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
 import { MailOutlined, SmileOutlined, IdcardOutlined } from "@ant-design/icons";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UploadProfilePhoto from "../components/UploadProfilePhoto";
+import imagePath from "../utils/ImagePath";
 
 const { Option } = Select;
 
 const changeProfilePhoto = {
-  name: 'file',
-  action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
+  name: "file",
+  action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
   headers: {
-    authorization: 'authorization-text',
+    authorization: "authorization-text",
   },
   onChange(info) {
-    if (info.file.status !== 'uploading') {
+    if (info.file.status !== "uploading") {
       console.log(info.file, info.fileList);
     }
-    if (info.file.status === 'done') {
+    if (info.file.status === "done") {
       alert(`${info.file.name} file uploaded successfully`);
-    } else if (info.file.status === 'error') {
+    } else if (info.file.status === "error") {
       alert(`${info.file.name} file upload failed.`);
     }
   },
 };
 
-const EditProfile = () => {
+const EditProfile = ({ data }) => {
   const [loading, setLoading] = useState(false);
   const [errorAlert, setErrorAlert] = useState(false);
 
   const onFinish = (values) => {
-    console.log(values);
+    values.userId = data.userId;
     setLoading(true);
     setErrorAlert(false);
-    UserService.register(values)
+    UserService.updateUser(values)
       .then((response) => {
+        console.log(response.data);
         if (response.data === "") {
           setErrorAlert(true);
         } else {
-          toast.success("🦄 Success, you are redirecting...!", {
+          toast.success("🦄 Success, saved...!", {
             position: "top-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -73,10 +75,10 @@ const EditProfile = () => {
       )}
 
       <div className="flex flex-col items-center mr-12">
-        <div className="w-32 h-32 rounded-full  bg-tertiary"></div>
-        <Upload {...changeProfilePhoto}>
-          <Button icon={<UploadOutlined />}>Click to Upload</Button>
-        </Upload>
+        <div className="w-32 h-32 rounded-full mb-2 border-2 flex items-center justify-center">
+          {data.userImage !== null ? <img className="user-image rounded-full" src={(imagePath+"/"+data.userImage)}/> : (<div></div>)}
+        </div>
+        <UploadProfilePhoto />
       </div>
       <Form
         className="edit-profile-form"
@@ -85,7 +87,14 @@ const EditProfile = () => {
         name="basic"
         labelCol={{ span: 0 }}
         wrapperCol={{ span: 0 }}
-        initialValues={{ remember: true }}
+        initialValues={{
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          userType: data.userType,
+          position: data.position,
+          company: data.company,
+        }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -95,7 +104,10 @@ const EditProfile = () => {
             className="flex-1 form-row-element"
             label="Name"
             name="firstName"
-            rules={[{ min: 3, message: "Name must be minimum 3 characters." }]}
+            rules={[
+              { min: 3, message: "Name must be minimum 3 characters." },
+              { required: true, message: "First name cane not be empty!" },
+            ]}
           >
             <Input className="bg-default-primary" prefix={<SmileOutlined />} />
           </Form.Item>
@@ -105,6 +117,7 @@ const EditProfile = () => {
             name="lastName"
             rules={[
               { min: 2, message: "Surname must be minimum 2 characters." },
+              { required: true, message: "Last name can not be empty!" },
             ]}
           >
             <Input prefix={<IdcardOutlined />} />
@@ -117,6 +130,7 @@ const EditProfile = () => {
             name="email"
             rules={[
               { type: "email", message: "The input is not valid E-mail!" },
+              { required: true, message: "E-mail can not be empty!" },
             ]}
           >
             <Input prefix={<MailOutlined />} />
@@ -136,22 +150,12 @@ const EditProfile = () => {
           <Form.Item
             className="flex-1 form-row-element"
             label="Position"
-            name="password"
-            rules={[
-              { min: 6, message: "Password must be at leats 6 characters." },
-            ]}
+            name="position"
           >
             <Input prefix={<IdcardOutlined />} />
           </Form.Item>
 
-          <Form.Item
-            className="flex-1"
-            label="Company"
-            name="confirmPassword"
-            rules={[
-              { min: 3, message: "Password must be at leats 3 characters." },
-            ]}
-          >
+          <Form.Item className="flex-1" label="Company" name="company">
             <Input prefix={<IdcardOutlined />} />
           </Form.Item>
         </div>

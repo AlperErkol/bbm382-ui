@@ -2,8 +2,12 @@ import React, { useState } from "react";
 
 import {Link} from 'react-router-dom';
 
+import getLoggedInUserId from "../utils/Authentication";
 
 const Sidebar = ({visible}) => {
+
+  const loggedInUser = getLoggedInUserId(); 
+
 
   return (
     <aside className={visible ? "main--sidebar active" : "main--sidebar"}>
@@ -13,7 +17,7 @@ const Sidebar = ({visible}) => {
             <Link to={"/"}>Home</Link>
           </li>
           <li className="main--sidebar-item">
-            <Link to={"/profile/overview"}>Profile</Link>
+            <Link to={`/profile/${loggedInUser}`}>Profile</Link>
           </li>
           <li className="main--sidebar-item">
             <Link to={"/"}>Log Out</Link>

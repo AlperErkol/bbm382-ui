@@ -65,7 +65,7 @@ const ApplyModal = ({callback,isVisible,isHide}) => {
                     <Input.TextArea className="bg-tertiary mb-4" spellCheck={false} placeholder="What's happening?"  showCount maxLength={160} />
                 </Form.Item>
             </Form>
-            <UploadFile/>
+            <UploadFile apply={true}/>
         </Modal>
         </>
     )

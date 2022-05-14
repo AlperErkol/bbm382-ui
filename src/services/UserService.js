@@ -57,6 +57,17 @@ const declinePendingRequest = (userId) => {
 };
 
 
+// Update User
+const updateUser = (data) => {
+    return axios.post(`${baseURL}/updateUser`,data);
+}
+
+// Update Password
+
+const updatePassword = (data) => {
+    return axios.post(`${baseURL}/updatePassword`,data);
+}
+
 
 
 const UserService = {
@@ -67,7 +78,9 @@ const UserService = {
     getAllActiveUsers,
     getAllPendingRequests,
     acceptPendingReques,
-    declinePendingRequest
+    declinePendingRequest,
+    updateUser,
+    updatePassword
 }
 
 export default UserService;

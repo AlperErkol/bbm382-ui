@@ -17,6 +17,10 @@ const createPost = (data) => {
     return axios.post(`${baseURL}/post`,data);
 }
 
+const findPostByPostId = (postId) => {
+    return axios.post(`${baseURL}/post/${postId}`);
+};
+
 // Update specific post
 const updatePost = (data) => {
     let userId = getLoggedInUserId();
@@ -33,7 +37,8 @@ const PostService = {
     getAllPosts,
     createPost,
     updatePost,
-    deletePost
+    deletePost,
+    findPostByPostId
 }
 
 export default PostService;
